@@ -1,10 +1,21 @@
 <template>
-	<div id="maestro">
-		<h2>Peliculas</h2>
-		<ul v-for="pelicula of peliculas" v-on:click="detalle" v-bind:id="pelicula.Id">
-			<li> {{ pelicula.Titulo }}</li>
-		</ul>
-		<input type="button" id="nuevo" value="Mostrar Detalle" v-on:click="nuevo"/>
+	<div id="maestro" class="contenedor">
+		<h2 class="titulo">Peliculas</h2>
+		<table v-if="peliculas && peliculas.length" class="table table-bordered">
+			<tr>
+		 		<th>Título</th>
+		 		<th>Director</th>
+		 		<th>Género</th>
+		 		<th>País</th>
+		 	</tr>
+			<tr v-for="pelicula of peliculas" v-on:click="detalle" v-bind:id="pelicula.Id">
+				<td>{{ pelicula.Titulo }}</td>
+				<td>{{ pelicula.Director }}</td>
+				<td>{{ pelicula.Genero }}</td>
+				<td>{{ pelicula.Pais }}</td>
+			</tr>
+		</table>
+		<input type="button" class="btn btn-success btn-sm" id="nuevo" value="Mostrar Detalle" v-on:click="nuevo"/>
 		<div id="form"></div>
 	</div>
 </template>
@@ -71,3 +82,12 @@
     }
 }
 </script>
+<style>
+	.contenedor{
+		width: 800px;
+	}
+	.titulo{
+		margin-top: 3%;
+	}
+	
+</style>

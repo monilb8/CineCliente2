@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="contenedor">
     <div id="pelicula" class="menu" v-on:click="abrirComponente">
       Pelicula
     </div>
@@ -47,14 +47,20 @@
 </script>
 
 <style>
+  .contenedor{
+    margin: 2%;
+  }
   .menu {
     padding: 5px;
     display:inline-block;
     width: 33%;
     text-align: center;
-    background-color: #e0dede; 
+    font-weight: bold;
+    color: white;
+    background-color: #61AC6C; 
     border-radius: 5px;
     border: 2px solid #777777;
+    margin-top: 5px;
   }
 
 </style>

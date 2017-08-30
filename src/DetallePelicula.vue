@@ -1,28 +1,30 @@
 <template>
 	<div id="form">
-		<div v-if="activo">
+		<div v-if="activo" class="detalle">
 			<h2>Detalle Pelicula</h2>
 			<div>
 				<label>Título:</label>
-				<input type="text" id="titulo" v-model="tituloPelicula" maxlength="20"/>
+				<input type="text" class="form-control" id="titulo" v-model="tituloPelicula" maxlength="20"/>
 			</div>
 			<div>
 				<label>Director:</label>
-				<input type="text" id="director" v-model="directorPelicula" maxlength="30"/>
+				<input type="text" class="form-control" id="director" v-model="directorPelicula" maxlength="30"/>
 			</div>
 			<div>
 				<label>Género:</label>
-				<input type="text" id="genero" v-model="generoPelicula" maxlength="10"/>
+				<input type="text" class="form-control" id="genero" v-model="generoPelicula" maxlength="10"/>
 			</div>
 			<div>
 				<label>País:</label>
-				<input type="text" id="pais" v-model="paisPelicula" maxlength="20" />
+				<input type="text" class="form-control" id="pais" v-model="paisPelicula" maxlength="20" />
 			</div>
-
-			<input type="button" id="btnEnv" value="Enviar" v-on:click="enviar"/>
-			<input type="button" id="btnAct" value="Actualizar" v-on:click="actualizar"/>
-			<input type="button" id="btnEli" value="Eliminar" v-on:click="eliminar"/>
-			<input type="button" id="btnVac" value="Vaciar" v-on:click="nuevo"/>
+			<div class="botones">
+				<input type="button" class="btn btn-outline-success btn-sm" id="btnEnv" value="Enviar" v-on:click="enviar"/>
+				<input type="button" class="btn btn-outline-success btn-sm" id="btnAct" value="Actualizar" v-on:click="actualizar"/>
+				<input type="button" class="btn btn-outline-success btn-sm" id="btnEli" value="Eliminar" v-on:click="eliminar"/>
+				<input type="button" class="btn btn-outline-success btn-sm" id="btnVac" value="Vaciar" v-on:click="nuevo"/>
+			</div>
+			
 		</div>
 	</div>
 </template>
@@ -141,3 +143,14 @@
 		return '';
 	}
 </script>
+
+<style>
+	.detalle{
+		width: 400px;
+		margin-top: 5%;	
+		margin-bottom: 5%;
+	}
+	.botones{
+		margin-top: 5%;	
+	}
+</style>

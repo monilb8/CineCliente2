@@ -1,28 +1,25 @@
 <template>
 	<div id="form">
-		<div v-if="activo">
+		<div v-if="activo" class="detalle">
 			<h2>Detalle Entrada</h2>
 			<div>
 				<label>Pelicula:</label>
-				<input type="text" id="peli" v-model="nombrePelicula" maxlength="40"/>
+				<input type="text" class="form-control" id="peli" v-model="nombrePelicula" maxlength="40"/>
 			</div>
 			<div>
 				<label>Duración:</label>
-				<input type="number" id="duracion" name="duracion" v-model="duracionPelicula"/>
+				<input type="number" class="form-control" id="duracion" name="duracion" v-model="duracionPelicula"/>
 			</div>
 			<div>
 				<label>Sala:</label>
-				<input type="number" id="sala" name="sala" v-model="salaPelicula" />
+				<input type="number" class="form-control" id="sala" name="sala" v-model="salaPelicula" />
 			</div>
-
-			<input type="button" id="btnEnv" value="Enviar" v-on:click="enviar"/>
-			<input type="button" id="btnAct" value="Actualizar" v-on:click="actualizar"/>
-			
-			<input type="button" id="btnVac" value="Vaciar" v-on:click="nuevo"/>
-
-			<button type="submit" class="btn btn-primary" v-on:click="eliminar"><span class="glyphicon glyphicon-remove"></span> Eliminar </button>
-
-
+			<div class="botones">
+				<input type="button" class="btn btn-outline-success btn-sm" id="btnEnv" value="Enviar" v-on:click="enviar"/>
+				<input type="button" class="btn btn-outline-success btn-sm" id="btnAct" value="Actualizar" v-on:click="actualizar"/>
+				<input type="button" class="btn btn-outline-success btn-sm" id="btnEli" value="Eliminar" v-on:click="eliminar"/>
+				<input type="button" class="btn btn-outline-success btn-sm" id="btnVac" value="Vaciar" v-on:click="nuevo"/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -141,11 +138,21 @@
 		return '';
 	}
 	function esEntero(numero){
-	    if (numero % 1 == 0) {
+	    if (numero % 1 == 0 && numero > 0) {
 	        return '';
 	    }
 	    else{
-	        return 'Debes introducir un numero entero.';
+	        return 'Debes introducir un numero entero y positivo.';
 	    }
 	}
 </script>
+<style>
+	.detalle{
+		width: 400px;
+		margin-top: 5%;	
+		margin-bottom: 5%;
+	}
+	.botones{
+		margin-top: 5%;	
+	}
+</style>
