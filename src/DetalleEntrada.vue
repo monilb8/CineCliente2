@@ -62,13 +62,18 @@
 				        .then(response => {
 				        	this.identificador = response.data.Id;
 				          	EventBus.$emit("updateEntrada", this.data);
+				          	swal(
+								  '',
+								  'Entrada creada!',
+								  'success'
+							)
 				        })
 				        this.nuevo();
 			        }else{
-			        	alert(mensajeValidacion);
+			        	swal('', mensajeValidacion, 'error');
 			        }
 		    	}else{
-		    		alert('Debes vaciar y volver a rellenar el formulario para insertar.');
+		    		swal('', 'Debes vaciar y volver a rellenar el formulario para insertar.','');
 		    	}
 			},
 
@@ -85,13 +90,18 @@
 						axios.put('http://10.0.2.2:62270/api/Entradas/' + data.Id, data)
 						.then(response => {
 							EventBus.$emit("updateEntrada", this.data);
+							swal(
+								  '',
+								  'Entrada actualizada!',
+								  'success'
+								)
 						})
 						this.nuevo();
 					}else{
-			        	alert(mensajeValidacion);
+						swal('', mensajeValidacion, 'error');
 			        }
 				}else{
-		    		alert('Debes seleccionar una pelicula para poder actualizar.');
+		    		swal('', 'Debes seleccionar una pelicula para poder actualizar.', '');
 		    	}
 			},
 
@@ -103,7 +113,7 @@
 			        })
 					this.nuevo();
 				}else{
-		    		alert('Debes seleccionar una pelicula para poder borrar.');
+		    		swal('', 'Debes seleccionar una pelicula para poder borrar.','');
 		    	}
 			}
 		},

@@ -49,6 +49,7 @@
 <style>
   .contenedor{
     margin: 2%;
+    width: 800px;
   }
   .menu {
     padding: 5px;

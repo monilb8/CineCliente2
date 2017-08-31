@@ -4,7 +4,7 @@
 			<h2>Detalle Pelicula</h2>
 			<div>
 				<label>Título:</label>
-				<input type="text" class="form-control" id="titulo" v-model="tituloPelicula" maxlength="20"/>
+				<input type="text" class="form-control" id="titulo" v-model="tituloPelicula" maxlength="30"/>
 			</div>
 			<div>
 				<label>Director:</label>
@@ -24,6 +24,7 @@
 				<input type="button" class="btn btn-outline-success btn-sm" id="btnEli" value="Eliminar" v-on:click="eliminar"/>
 				<input type="button" class="btn btn-outline-success btn-sm" id="btnVac" value="Vaciar" v-on:click="nuevo"/>
 			</div>
+
 			
 		</div>
 	</div>
@@ -117,6 +118,15 @@
 		    	}
 			}
 		},
+
+/*		computed:{
+			nombre: function(){
+				if(this.tituloPelicula > 10){
+					alert('titulo largo');
+				}
+			}
+		},*/
+
 		created() {
     		this.pelicula = this.$parent.pelicula;
     		this.tituloPelicula = this.pelicula.Titulo;
