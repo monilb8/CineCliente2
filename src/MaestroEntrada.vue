@@ -6,11 +6,13 @@
 		 		<th>Pelicula</th>
 		 		<th>Duración</th>
 		 		<th>Sala</th>
+		 		<th>Butaca</th>
 		 	</tr>
 			<tr v-for="entrada of entradas" v-on:click="detalle" v-bind:id="entrada.Id">
 				<td>{{ entrada.Pelicula }}</td>
 				<td>{{ entrada.Duracion }}</td>
 				<td>{{ entrada.Sala }}</td>
+				<td>{{ entrada.Butaca }}</td>
 			</tr>
 		</table>
 		<input type="button" class="btn btn-success btn-sm" id="nuevo" value="Mostrar Detalle" v-on:click="nuevo"/>
@@ -61,6 +63,7 @@
 		  		ent.Pelicula=undefined;
 		  		ent.Duracion=undefined;
 		  		ent.Sala=undefined;
+		  		ent.Butaca=undefined;
 
 		  		new Vue({
 				el: '#form',

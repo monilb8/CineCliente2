@@ -12,7 +12,19 @@
 			</div>
 			<div>
 				<label>Sala:</label>
-				<input type="number" class="form-control" id="sala" name="sala" v-model="salaPelicula" />
+				<!--<input type="number" class="form-control" id="sala" name="sala" v-model="salaPelicula" /> -->
+				<select class="form-control" v-model="salaPelicula">
+					<option disabled value="">Selecciona número de sala</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+				</select>
+				<input type="radio" id="one" value="Normal" v-model="butacaPelicula">
+				<label for="Normal">Normal</label>
+				<br>
+				<input type="radio" id="two" value="VIP" v-model="butacaPelicula">
+				<label for="VIP">VIP</label>
 			</div>
 			<div class="botones">
 				<input type="button" class="btn btn-outline-success btn-sm" id="btnEnv" value="Enviar" v-on:click="enviar"/>
@@ -36,6 +48,7 @@
 		     	nombrePelicula:undefined,
 		     	duracionPelicula:undefined,
 		     	salaPelicula:undefined,
+		     	butacaPelicula:undefined,
 		     	identificador:undefined
 		    }
 		},
@@ -45,17 +58,19 @@
 		  		this.nombrePelicula=undefined;
 		     	this.duracionPelicula=undefined;
 		     	this.salaPelicula=undefined;
+		     	this.butacaPelicula=undefined;
 		     	this.identificador=-1;
 		  	},
 
 		  	enviar: function(){
 		    	if(this.identificador <0){
-		    		let mensajeValidacion = isFormularioValido(this.nombrePelicula,this.duracionPelicula,this.salaPelicula);
+		    		let mensajeValidacion = isFormularioValido(this.nombrePelicula,this.duracionPelicula,this.salaPelicula, this.butacaPelicula);
 		    		if(mensajeValidacion ==''){
 				    	let data = {
 					        Pelicula: this.nombrePelicula,
 					        Duracion: this.duracionPelicula,
 					        Sala: this.salaPelicula,
+					        Butaca: this.butacaPelicula,
 					        Id: this.identificador
 				      	}
 				        axios.post('http://10.0.2.2:62270/api/Entradas/' ,data)
@@ -79,12 +94,13 @@
 
 			actualizar: function(){
 		    	if(this.identificador >0){
-		    		let mensajeValidacion = isFormularioValido(this.nombrePelicula,this.duracionPelicula,this.salaPelicula);
+		    		let mensajeValidacion = isFormularioValido(this.nombrePelicula,this.duracionPelicula,this.salaPelicula, this.butacaPelicula);
 		    		if(mensajeValidacion ==''){
 				    	let data = {
 					        Pelicula: this.nombrePelicula,
 					        Duracion: this.duracionPelicula,
 					        Sala: this.salaPelicula,
+					        Butaca: this.butacaPelicula,
 					        Id: this.identificador
 				      	}
 						axios.put('http://10.0.2.2:62270/api/Entradas/' + data.Id, data)
@@ -122,11 +138,12 @@
     		this.nombrePelicula = this.entrada.Pelicula;
     		this.duracionPelicula= this.entrada.Duracion;
 		    this.salaPelicula= this.entrada.Sala;
+		    this.butacaPelicula= this.entrada.Butaca;
 		    this.identificador=this.entrada.Id;
   		}
 	}
 
-	function isFormularioValido(nomPelicula,durPelicula,salPelicula){
+	function isFormularioValido(nomPelicula,durPelicula,salPelicula, butPelicula){
 		let mensajeVal='';
 		if(nomPelicula == null || nomPelicula=='' || (nomPelicula!=null && nomPelicula.trim()=='')){
 			return 'El nombre de la pelicula debe estar relleno.'
@@ -138,13 +155,18 @@
 		if(mensaje!= ''){
 			return 'Campo Duracion: '+ mensaje;
 		}
-		if(salPelicula==0 || salPelicula>=100){
+
+		if(salPelicula == null || salPelicula==''){
+			return 'Debes escoger un número de sala.'
+		}
+
+/*		if(salPelicula==0 || salPelicula>=100){
 			return 'La sala debe ser mayor que 0 y menor que 100.'
 		}
-		 mensaje = esEntero(salPelicula)
+/*		 mensaje = esEntero(salPelicula)
 		if(mensaje!= ''){
 			return 'Campo Sala: '+ mensaje;
-		}
+		}*/
 		return '';
 	}
 	function esEntero(numero){
